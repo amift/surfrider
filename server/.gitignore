@@ -1,0 +1,10 @@
+.env
+.idea
+.DS_Store
+._*
+.project
+.settings
+*/cache/*
+*/logs/*
+!*/logs/.gitkeep
+!*/cache/.gitkeep
