@@ -23,16 +23,17 @@ $app->notFound(function () use($app) {
     echo $app['view']->render('404');
 });
 
-$app->error(
-    function ($exception) {
-        header('Content-Type: application/json');
+// $app->error(
+//     function ($e) {
+//         header('Content-Type: application/json');
+//         http_response_code($e->getCode() ?: 401);
 
-        echo json_encode(
-            [
-                'code'    => $exception->getCode(),
-                'status'  => 'error',
-                'message' => $exception->getMessage(),
-            ]
-        );
-    }
-);
+//         echo json_encode(
+//             [
+//                 'code'    => $e->getCode(),
+//                 'status'  => 'error',
+//                 'message' => $e->getMessage(),
+//             ]
+//         );
+//     }
+// );

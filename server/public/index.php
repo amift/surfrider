@@ -10,7 +10,6 @@ define('BASE_PATH', dirname(__DIR__));
 define('APP_PATH', BASE_PATH . '/app');
 
 try {
-    
     /**
      * The FactoryDefault Dependency Injector automatically registers the services that
      * provide a full stack framework. These default services can be overidden with custom ones.
@@ -48,5 +47,13 @@ try {
      */
     $app->handle($_SERVER['REQUEST_URI']);
 } catch (\Exception $e) {
-    
+    header('Content-Type: application/json');
+    http_response_code($e->getCode() ?: 401);
+    echo json_encode(
+        [
+            'code'    => $e->getCode() ?: 401,
+            'status'  => 'error',
+            'message' => $e->getMessage(),
+        ]
+    );
 }

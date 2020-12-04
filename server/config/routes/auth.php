@@ -4,14 +4,12 @@ use SurfRider\Controllers\AuthController;
 
 $collection = new Collection();
 
-$collection->setHandler(
-    new AuthController()
-);
+$collection->setHandler(AuthController::class,true);
 
 $collection->setPrefix('/api');
 
 $collection
-        ->post("/auth/check", "check")
+        ->post("/auth/logged", "logged")
         ->post("/auth/login", "login")
         ->post("/auth/register", "register");
 

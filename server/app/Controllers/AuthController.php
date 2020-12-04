@@ -62,7 +62,7 @@ class AuthController extends BaseController
 
 
     private function generateSession($user){
-        $session = new Auth();
+        $session = Auth::findFirstByUser_id($user->id) ?: new Auth;
         $session->randomToken();
         $session->user_id = $user->id;
         $session->created_at = time();

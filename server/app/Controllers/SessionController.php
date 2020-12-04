@@ -3,39 +3,31 @@ declare(strict_types=1);
 namespace SurfRider\Controllers;
 
 use Exception;
-use Phalcon\Filter;
-use SurfRider\Models\Auth;
-use SurfRider\Models\User;
-use SurfRider\Validation\LoginValidation;
+use SurfRider\Models\Session;
 
-class AuthController extends BaseController
+class SessionController extends AuthMiddleware
 {
-    public function onConstruct(){
+    public function onConstruct()
+    {
+        parent::onConstruct();
 
+        if (!$this->isLogged())
+            throw new Exception("You must logged to access to use this");
     }
+
     function start(){
-        $username = $this->request->getPost('username', Filter::FILTER_STRING);
-        $password = $this->request->getPost('password', Filter::FILTER_STRING);    
-        $email  = $this->request->getPost('email', Filter::FILTER_STRING);    
+        $session = new Session();
+        $session->user_id = $this->user->id;
+        $session->created_at = time();
+        // $session->spot_id = 
 
-        $data = ['username'=>$username,'password'=>$password,'email'=>$email];
 
-        $validate = LoginValidation::validate($data);
-        if (count($validate)){
-            foreach($validate as $error)
-            throw new Exception($error->getMessage(),401);
-        }
-
-        $user = new User();
-
-        foreach($data as $key => $val)
-            $user->$key = $val;
-
-        if (!$user->save())
-            foreach($user->getMessages() as $error)
-                throw new Exception($error->getMessage(),401);
-
-        return $this->generateSession($user);
+        return 'ok';
     }   
+
+
+    function logged(){
+        return $this->authHeader();
+    }
 
 }
