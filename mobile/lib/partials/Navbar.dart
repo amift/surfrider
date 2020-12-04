@@ -7,6 +7,7 @@ class Navbar extends StatelessWidget {
   Widget build(BuildContext context) {
     return Container(
       color: Colors.white,
+      height: 50,
       child: Padding(
         padding: EdgeInsets.fromLTRB(32, 10, 0, 10),
         child: Row(

@@ -1,30 +1,20 @@
 import 'package:flutter/material.dart';
 
+import 'package:surfrider/partials/WeatherCard.dart';
+
 class HistoryCard{
   String spot = "Reims - Canal";
   String date = "12 February 2020";
   int point = 700;
 
 
-  String weather = "assets/img/sun.png";
+  WeatherCard weather = WeatherCard("assets/img/cloud.png", Color.fromRGBO(75, 122, 252, 1), 60);
 
   Widget getWidget(context) {
     return Container(
       child: Row(
         children: [
-          Container(
-            width: 60,
-            height: 60,
-            decoration: BoxDecoration(
-              color: Color.fromRGBO(75, 122, 252, 1),
-              borderRadius: BorderRadius.circular(15),
-            ),
-            child:Container(
-              width: 35,
-                height: 35,
-              child:Image.asset(weather)
-            )
-          ),
+          weather.getWidget(context),
           SizedBox(width: 10,),
           Column(
             crossAxisAlignment: CrossAxisAlignment.start,
