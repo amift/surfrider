@@ -2,8 +2,8 @@
   <div class="col-12 text-center mt-2 mb-2">
       <div class="logobox">
         <div class="row">
-            <img alt="Icon" src="assets/media/icon.png" class="icon rounded-circle">
-            <h2 class="title">QuickChat</h2>
+            <img alt="Icon" src="assets/media/icon.png" class="icon  rounded-sm">
+            <h2 class="title">SurfRider</h2>
         </div>
       </div>
   </div>

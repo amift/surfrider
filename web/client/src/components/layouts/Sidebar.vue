@@ -2,7 +2,7 @@
   <div id="sidebar" class="col-md-3">
 		<div class="sidebar row">
 			<logo-box />
-			<!-- <user-box v-bind:username="get('username')" v-bind:about="get('about')" v-bind:avatar="get('avatar')"/> -->
+			<user-box v-bind:username="get('username')" v-bind:about="get('about')" v-bind:avatar="get('avatar')"/>
 			<contacts-box />
 		</div>
   </div>
@@ -10,14 +10,14 @@
 
 <script>
 import Contacts from './Contacts.vue';
-// import UserBox from '../partials/UserBox.vue';
+import UserBox from '../partials/UserBox.vue';
 import Logo from '../partials/Logo.vue';
 
 export default {
 	name: 'Sidebar',
 	components: {
 		'logo-box': Logo,
-		// 'user-box': UserBox,
+		'user-box': UserBox,
 		'contacts-box': Contacts,
 	},
 	methods:{

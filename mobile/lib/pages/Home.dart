@@ -15,6 +15,7 @@ class Home extends StatefulWidget {
   @override
   _HomeState createState() => _HomeState();
 
+
 }
 
 class _HomeState extends State<Home> {
@@ -24,19 +25,24 @@ class _HomeState extends State<Home> {
   @override
   void initState() {
     super.initState();
+    _profileFetch();
   }
 
   checkLoginStatus() async {
+    sharedPreferences = await SharedPreferences.getInstance();
+
+    print("SESSION=>>>>>>>>>>" + sharedPreferences.getString("token"));
+
     if(sharedPreferences.getString("token") == null){
       Navigator.of(context).pushAndRemoveUntil(MaterialPageRoute(builder: (BuildContext context) => Login()), (route) => false);
+    }else{
+      await fetchProfile();
     }
   }
 
   Future _profileFetch() async {
-    sharedPreferences = await SharedPreferences.getInstance();
-
-    var token = sharedPreferences.getString("token");
-    var map = Map<String, dynamic>();
+    sharedPreferences.getString("token")
+   /* var map = Map<String, dynamic>();
     map['token'] = token;
 
     var response = await http.post(api.profile, headers:map);
@@ -45,14 +51,12 @@ class _HomeState extends State<Home> {
     if(jsonData['status'] == "error"){
       setState(() {
         sharedPreferences.setString("token", null);
-        debugPrint('=>>>>>>>>redirect login');
-        //Navigator.of(context).pushAndRemoveUntil(MaterialPageRoute(builder: (BuildContext context) => Login()), (route) => false);
+        Navigator.of(context).pushAndRemoveUntil(MaterialPageRoute(builder: (BuildContext context) => Login()), (route) => false);
       });
     }
     else{
-      debugPrint(response.body);
-    }
-    return true;
+      print(response.body);
+    }*/
   }
 
   Widget History() {
@@ -74,76 +78,62 @@ class _HomeState extends State<Home> {
     );
   }
 
-  Widget _areaWidget(context) {
-    SafeArea(
+  @override
+  Widget build(BuildContext context) {
+
+
+    return SafeArea(
       child: Scaffold(
         body: Stack(
-            children: [
-              SingleChildScrollView(
-                child: Padding(
-                  padding: const EdgeInsets.fromLTRB(32, 0, 32, 0),
-                  child: Column(
-                    children: [
-                      SizedBox(height: 70,),
-                      MaterialButton(
-                        onPressed: () {
-                          Navigator.of(context).push(
-                              MaterialPageRoute(
-                                builder: (context) => Session(),
-                              )
-                          );
-                        },
-                        padding: EdgeInsets.fromLTRB(0, 0, 0, 0),
-                        child: Container(
-                          width: MediaQuery
-                              .of(context)
-                              .size
-                              .width,
-                          height: 145,
-                          decoration: BoxDecoration(
-                              color: Color.fromRGBO(235, 235, 235, 1),
-                              borderRadius: BorderRadius.circular(10)
-                          ),
-                          child: Column(
-                            mainAxisAlignment: MainAxisAlignment.center,
-                            children: [
-                              Icon(
+          children: [
+            SingleChildScrollView(
+              child: Padding(
+                padding: const EdgeInsets.fromLTRB(32, 0, 32, 0),
+                child: Column(
+                  children: [
+                    SizedBox(height: 70,),
+                    MaterialButton(
+                      onPressed: () {
+                        Navigator.of(context).push(
+                            MaterialPageRoute(
+                              builder: (context) => Session(),
+                            )
+                        );
+                      },
+                      padding: EdgeInsets.fromLTRB(0, 0, 0, 0),
+                      child: Container(
+                        width: MediaQuery.of(context).size.width,
+                        height: 145,
+                        decoration: BoxDecoration(
+                          color: Color.fromRGBO(235, 235, 235, 1),
+                          borderRadius: BorderRadius.circular(10)
+                        ),
+                        child: Column(
+                          mainAxisAlignment: MainAxisAlignment.center,
+                          children: [
+                            Icon(
                                 Icons.power_settings_new,
                                 size: 52,
                                 color: Color.fromRGBO(68, 75, 119, 1),
-                              ),
-                              SizedBox(height: 10,),
-                              Text(
+                            ),
+                            SizedBox(height: 10,),
+                            Text(
                                 "Start a session",
-                                style: TextStyle(fontSize: 18,
-                                    color: Color.fromRGBO(68, 75, 119, 1)),
-                              ),
-                            ],
-                          ),
+                                style: TextStyle(fontSize: 18, color: Color.fromRGBO(68, 75, 119, 1)),
+                            ),
+                          ],
                         ),
                       ),
-                      History()
-                    ],
-                  ),
+                    ),
+                    History()
+                  ],
                 ),
               ),
-              Navbar(),
-            ]
+            ),
+            Navbar(),
+          ]
         ),
       ),
     );
   }
-  @override
-  Widget build(BuildContext context) => FutureBuilder(
-    future: _profileFetch(),
-    builder: (context, snapshot) {
-      if (snapshot.hasData) {
-        return _areaWidget(context);
-      } else {
-        // We can show the loading view until the data comes back.
-        debugPrint('Step 1, build loading widget');
-        return CircularProgressIndicator();
-      }
-    },
-  );
 }
