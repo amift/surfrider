@@ -5,8 +5,8 @@
  */
 $loader = new \Phalcon\Loader();
 
-$loader->registerDirs(
+$loader->registerNamespaces(
     [
-        $config->application->modelsDir
+       'SurfRider' => APP_PATH
     ]
 )->register();

@@ -6,9 +6,9 @@
 defined('BASE_PATH') || define('BASE_PATH', getenv('BASE_PATH') ?? realpath(dirname(__FILE__) . '/../..'));
 defined('APP_PATH') || define('APP_PATH', BASE_PATH . '/app');
 
-require ('vendor/autoload.php');
+require_once (dirname(__DIR__) . '/vendor/autoload.php');
 
-(Dotenv\Dotenv::createImmutable(dirname(dirname(__DIR__))))->load();
+(Dotenv\Dotenv::createImmutable(dirname(__DIR__)))->load();
 
 return new \Phalcon\Config([
     'database' => [
@@ -22,9 +22,10 @@ return new \Phalcon\Config([
     ],
 
     'application' => [
-        'modelsDir'      => APP_PATH . '/models/',
-        'migrationsDir'  => APP_PATH . '/migrations/',
-        'viewsDir'       => APP_PATH . '/views/',
+        'modelsDir'      => APP_PATH . '/Models/',
+        'controllersDir' => APP_PATH . '/Controllers/',
+        'migrationsDir'  => BASE_PATH . '/resources/migrations/',
+        'viewsDir'       => BASE_PATH . '/resources/views/',
         'baseUri'        => '/',
     ]
 ]);

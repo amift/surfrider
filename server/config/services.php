@@ -8,7 +8,7 @@ use Phalcon\Url as UrlResolver;
  * Shared configuration service
  */
 $di->setShared('config', function () {
-    return include APP_PATH . "/config/config.php";
+    return include BASE_PATH . "/config/config.php";
 });
 
 /**
@@ -40,7 +40,7 @@ $di->setShared('db', function () {
     $config = $this->getConfig();
 
     $class = 'Phalcon\Db\Adapter\Pdo\\' . $config->database->adapter;
-    $params = $config->database;
+    $params = $config->database->toArray();
 
     if ($config->database->adapter == 'Postgresql') {
         unset($params['charset']);
