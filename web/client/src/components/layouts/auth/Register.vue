@@ -3,7 +3,7 @@
         <form method="post" v-on:submit.prevent="onSubmit">
             <div class="logo">
                 <img alt="Icon" src="assets/media/icon.png" class="icon rounded-circle">
-               <h2 class="title">QuickChat</h2>
+               <h2 class="title">SurfRider</h2>
             </div>
             <div class="errors"></div>
             <div class="form-group">

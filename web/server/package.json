@@ -1,7 +1,7 @@
 {
-  "name": "chat-server",
+  "name": "app-server",
   "version": "0.0.1",
-  "description": "Chat Server - Build With Socket.io",
+  "description": "App Server - Build With Socket.io",
   "main": "app.js",
   "directories": {
     "test": "tests"

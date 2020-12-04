@@ -7,8 +7,13 @@ export default createStore({
     auth: 'login',
     logged: false,
     socket: io('ws://127.0.0.1', { transports: ['websocket'] }),
-    contacts: [],
-    messages: [],
+    data: {
+      pots: [],
+      useditems: [],
+      users: [],
+      sessions: [],
+      entities: [],
+    },
     user: {}
   },
   getters: {
