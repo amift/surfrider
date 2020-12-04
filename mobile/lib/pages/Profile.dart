@@ -64,21 +64,22 @@ class _ProfileState extends State<Profile> {
   @override
   Widget build(BuildContext context) {
     return SafeArea(
-      child: Column(
-          children: [
-            header(),
-            SingleChildScrollView(
-              child: Padding(
-                padding: const EdgeInsets.fromLTRB(32, 0, 32, 0),
-                child: Column(
-                  children: [
-                    SizedBox(height: 70,),
-                    body()
-                  ],
+      child: Scaffold(
+        body: Column(
+            children: [
+              header(),
+              SingleChildScrollView(
+                child: Padding(
+                  padding: const EdgeInsets.fromLTRB(32, 0, 32, 0),
+                  child: Column(
+                    children: [
+                      body()
+                    ],
+                  ),
                 ),
               ),
-            ),
-          ]
+            ]
+        ),
       ),
     );
   }

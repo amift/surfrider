@@ -1,7 +1,11 @@
+import 'package:flutter/cupertino.dart';
 import 'package:flutter/material.dart';
 
 import 'package:surfrider/partials/Navbar.dart';
 import 'package:surfrider/pages/Home.dart';
+import 'package:surfrider/partials/TrashCard.dart';
+import 'package:surfrider/partials/WeatherCard.dart';
+
 
 class Session extends StatefulWidget {
   @override
@@ -11,7 +15,13 @@ class Session extends StatefulWidget {
 class _SessionState extends State<Session> {
 
   List<bool> checkSee = List<bool>();
+
   List<bool> checkWSee = List<bool>();
+  List<TrashCard> trashCard = List<TrashCard>();
+
+  int checkWeather = 0;
+  List<WeatherCard> weatherCard = List<WeatherCard>();
+
   List<bool> checkUse = List<bool>();
 
   @override
@@ -19,60 +29,126 @@ class _SessionState extends State<Session> {
     for(var i = 0; i<3; i++){
       checkSee.add(false);
     }
+
+    for(var i = 0; i<8; i++){
+      var trash = TrashCard(i);
+      checkWSee.add(false);
+      trashCard.add(trash);
+    }
+
     for(var i = 0; i<8; i++){
       checkUse.add(false);
     }
-    for(var i = 0; i<3; i++){
-      checkUse.add(false);
-    }
+
+    weatherCard.add(WeatherCard("assets/img/sun.png",Color.fromRGBO(75, 122, 252, 1),100.0));
+    weatherCard.add(WeatherCard("assets/img/cloud.png",Color.fromRGBO(75, 122, 252, 1),100.0));
+    weatherCard.add(WeatherCard("assets/img/cloudy-day.png",Color.fromRGBO(75, 122, 252, 1),100.0));
+    weatherCard.add(WeatherCard("assets/img/bolt.png",Color.fromRGBO(75, 122, 252, 1),100.0));
+    weatherCard.add(WeatherCard("assets/img/rain.png",Color.fromRGBO(75, 122, 252, 1),100.0));
   }
 
   Widget whoSee() {
     return Container(
       width: MediaQuery.of(context).size.width,
       child: Column(
-        crossAxisAlignment: CrossAxisAlignment.center,
+        crossAxisAlignment: CrossAxisAlignment.start,
         children: [
           Text(
               "Who did you see ?",
             style: TextStyle(color: Color.fromRGBO(82, 82, 82, 1), fontSize: 18),
           ),
+          SizedBox(height:20,),
           Row(
             children: [
-              Checkbox(value: checkSee[0],
-                  activeColor: Color.fromRGBO(75, 122, 252, 1),
-                  onChanged:(bool newValue){
-                    setState(() {
-                      checkSee[0] = newValue;
-                    });
-                    Text('Remember me');
-                  }),
+              InkWell(
+                onTap: () {
+                  setState(() {
+                    checkSee[0] = !checkSee[0];
+                  });
+                },
+                child: Container(
+                  decoration: BoxDecoration(shape: BoxShape.circle, color: checkSee[0] ? Colors.blue : Color.fromRGBO(196, 196, 196, 1)),
+                  child: Padding(
+                    padding: const EdgeInsets.all(4.0),
+                    child: checkSee[0]
+                        ? Icon(
+                      Icons.check,
+                      size: 15.0,
+                      color: Colors.white,
+                    )
+                        : Icon(
+                      Icons.check_box_outline_blank,
+                      size: 15.0,
+                      color: Color.fromRGBO(196, 196, 196, 1),
+                    ),
+                  ),
+                ),
+              ),
+              SizedBox(width:10,),
               Text("Bathers"),
             ],
           ),
+          SizedBox(height:20,),
+
           Row(
             children: [
-              Checkbox(value: checkSee[1],
-                  activeColor: Color.fromRGBO(75, 122, 252, 1),
-                  onChanged:(bool newValue){
-                    setState(() {
-                      checkSee[1] = newValue;
-                    });
-                    Text('Remember me');
-                  }),
+              InkWell(
+                onTap: () {
+                  setState(() {
+                    checkSee[1] = !checkSee[1];
+                  });
+                },
+                child: Container(
+                  decoration: BoxDecoration(shape: BoxShape.circle, color: checkSee[1] ? Colors.blue : Color.fromRGBO(196, 196, 196, 1)),
+                  child: Padding(
+                    padding: const EdgeInsets.all(4.0),
+                    child: checkSee[1]
+                        ? Icon(
+                      Icons.check,
+                      size: 15.0,
+                      color: Colors.white,
+                    )
+                        : Icon(
+                      Icons.check_box_outline_blank,
+                      size: 15.0,
+                      color: Color.fromRGBO(196, 196, 196, 1),
+                    ),
+                  ),
+                ),
+              ),
+              SizedBox(width:10,),
               Text("Practitioners of nautical activities"),
             ],
           ),
+          SizedBox(height:20,),
+
           Row(
             children: [
-              Checkbox(value: checkSee[2],
-                  activeColor: Color.fromRGBO(75, 122, 252, 1),
-                  onChanged:(bool newValue){
-                    setState(() {
-                      checkSee[2] = newValue;
-                    });
-                    Text('Remember me');
-                  }),
+              InkWell(
+                onTap: () {
+                  setState(() {
+                    checkSee[2] = !checkSee[2];
+                  });
+                },
+                child: Container(
+                  decoration: BoxDecoration(shape: BoxShape.circle, color: checkSee[2] ? Colors.blue : Color.fromRGBO(196, 196, 196, 1)),
+                  child: Padding(
+                    padding: const EdgeInsets.all(4.0),
+                    child: checkSee[2]
+                        ? Icon(
+                      Icons.check,
+                      size: 15.0,
+                      color: Colors.white,
+                    )
+                        : Icon(
+                      Icons.check_box_outline_blank,
+                      size: 15.0,
+                      color: Color.fromRGBO(196, 196, 196, 1),
+                    ),
+                  ),
+                ),
+              ),
+              SizedBox(width:10,),
               Text("Boat"),
             ],
           ),
@@ -82,104 +158,38 @@ class _SessionState extends State<Session> {
   }
 
   Widget whatSee() {
+    List<Widget> cardList = List<Widget>();
+    cardList.add(SizedBox(width: 32,));
+
+    for(var trash in trashCard){
+      cardList.add(MaterialButton(
+          onPressed: () {
+            setState(() {
+              checkWSee[trash.getId()] = !checkWSee[trash.getId()];
+              trash.changeColor(checkWSee[trash.getId()]);
+            });
+          },
+          padding: EdgeInsets.fromLTRB(0, 0, 10, 0),
+          child: trash.getWidget(context),
+      ));
+    }
+    cardList.add(SizedBox(width: 32,));
     return Container(
       width: MediaQuery.of(context).size.width,
       child: Column(
-        crossAxisAlignment: CrossAxisAlignment.center,
+        crossAxisAlignment: CrossAxisAlignment.start,
         children: [
-          Text("What did you see during your session ?",
-            style: TextStyle(color: Color.fromRGBO(82, 82, 82, 1), fontSize: 18),),
-          SizedBox(height: 15,),
+          Padding(
+            padding: EdgeInsets.fromLTRB(32, 0, 0, 0),
+            child: Text("What did you see during your session ?",
+              style: TextStyle(color: Color.fromRGBO(82, 82, 82, 1), fontSize: 18),),
+          ),
+          SizedBox(height: 20,),
           Container(
             height: 150,
             child: ListView(
               scrollDirection: Axis.horizontal,
-              children: [
-                MaterialButton(
-                  onPressed: () {
-                    setState(() {
-                      checkWSee[0] = true;
-                    });
-                  },
-                  child: Container(
-                    width: 100,
-                    decoration: BoxDecoration(
-                      color: Color.fromRGBO(2, 87, 242, 10),
-                      borderRadius: BorderRadius.circular(15),
-                    ),
-                    child:Column(
-                      mainAxisAlignment: MainAxisAlignment.spaceEvenly,
-                      children: [
-                        Image.asset("assets/img/sun.png",width: 50,),
-                        Text("Trash",style:TextStyle(color:Colors.white)),
-                      ],
-                    ),
-                  ),
-                ),
-                MaterialButton(
-                  onPressed: () {
-                    setState(() {
-                      checkWSee[0] = true;
-                    });
-                  },
-                  child: Container(
-                    width: 100,
-                    decoration: BoxDecoration(
-                      color: Color.fromRGBO(2, 87, 242, 10),
-                      borderRadius: BorderRadius.circular(15),
-                    ),
-                    child:Column(
-                      mainAxisAlignment: MainAxisAlignment.spaceEvenly,
-                      children: [
-                        Image.asset("assets/img/sun.png",width: 50,),
-                        Text("Trash",style:TextStyle(color:Colors.white)),
-                      ],
-                    ),
-                  ),
-                ),
-                MaterialButton(
-                  onPressed: () {
-                    setState(() {
-                      checkWSee[0] = true;
-                    });
-                  },
-                  child: Container(
-                    width: 100,
-                    decoration: BoxDecoration(
-                      color: Color.fromRGBO(2, 87, 242, 10),
-                      borderRadius: BorderRadius.circular(15),
-                    ),
-                    child:Column(
-                      mainAxisAlignment: MainAxisAlignment.spaceEvenly,
-                      children: [
-                        Image.asset("assets/img/sun.png",width: 50,),
-                        Text("Trash",style:TextStyle(color:Colors.white)),
-                      ],
-                    ),
-                  ),
-                ),
-                MaterialButton(
-                  onPressed: () {
-                    setState(() {
-                      checkWSee[0] = true;
-                    });
-                  },
-                  child: Container(
-                    width: 100,
-                    decoration: BoxDecoration(
-                      color: Color.fromRGBO(2, 87, 242, 10),
-                      borderRadius: BorderRadius.circular(15),
-                    ),
-                    child:Column(
-                      mainAxisAlignment: MainAxisAlignment.spaceEvenly,
-                      children: [
-                        Image.asset("assets/img/sun.png",width: 50,),
-                        Text("Trash",style:TextStyle(color:Colors.white)),
-                      ],
-                    ),
-                  ),
-                ),
-              ],
+              children: cardList
             ),
           )
         ],
@@ -191,122 +201,267 @@ class _SessionState extends State<Session> {
     return Container(
       width: MediaQuery.of(context).size.width,
       child: Column(
-        crossAxisAlignment: CrossAxisAlignment.center,
+        crossAxisAlignment: CrossAxisAlignment.start,
         children: [
           Text("What did you use ?",
             style: TextStyle(color: Color.fromRGBO(82, 82, 82, 1), fontSize: 18),),
           Row(
+            mainAxisAlignment: MainAxisAlignment.spaceEvenly,
             children: [
               Column(
                 crossAxisAlignment: CrossAxisAlignment.start,
                 children: [
+                  SizedBox(height:20,),
                   Row(
                     children: [
-                      Checkbox(value: checkUse[0],
-                          activeColor: Color.fromRGBO(75, 122, 252, 1),
-                          onChanged:(bool newValue){
-                            setState(() {
-                              checkUse[0] = newValue;
-                            });
-                            Text('Remember me');
-                          }),
+                      InkWell(
+                        onTap: () {
+                          setState(() {
+                            checkUse[0] = !checkUse[0];
+                          });
+                        },
+                        child: Container(
+                          decoration: BoxDecoration(shape: BoxShape.circle, color: checkUse[0] ? Colors.blue : Color.fromRGBO(196, 196, 196, 1)),
+                          child: Padding(
+                            padding: const EdgeInsets.all(4.0),
+                            child: checkUse[0]
+                                ? Icon(
+                              Icons.check,
+                              size: 15.0,
+                              color: Colors.white,
+                            )
+                                : Icon(
+                              Icons.check_box_outline_blank,
+                              size: 15.0,
+                              color: Color.fromRGBO(196, 196, 196, 1),
+                            ),
+                          ),
+                        ),
+                      ),
+                      SizedBox(width:10,),
                       Text("Solar cream"),
                     ],
                   ),
+                  SizedBox(height:20,),
                   Row(
                     children: [
-                      Checkbox(value: checkUse[1],
-                          activeColor: Color.fromRGBO(75, 122, 252, 1),
-                          onChanged:(bool newValue){
-                            setState(() {
-                              checkUse[1] = newValue;
-                            });
-                            Text('Remember me');
-                          }),
+                      InkWell(
+                        onTap: () {
+                          setState(() {
+                            checkUse[1] = !checkUse[1];
+                          });
+                        },
+                        child: Container(
+                          decoration: BoxDecoration(shape: BoxShape.circle, color: checkUse[1] ? Colors.blue : Color.fromRGBO(196, 196, 196, 1)),
+                          child: Padding(
+                            padding: const EdgeInsets.all(4.0),
+                            child: checkUse[1]
+                                ? Icon(
+                              Icons.check,
+                              size: 15.0,
+                              color: Colors.white,
+                            )
+                                : Icon(
+                              Icons.check_box_outline_blank,
+                              size: 15.0,
+                              color: Color.fromRGBO(196, 196, 196, 1),
+                            ),
+                          ),
+                        ),
+                      ),
+                      SizedBox(width:10,),
                       Text("Perfume"),
                     ],
                   ),
+                  SizedBox(height:20,),
                   Row(
                     children: [
-                      Checkbox(value: checkUse[2],
-                          activeColor: Color.fromRGBO(75, 122, 252, 1),
-                          onChanged:(bool newValue){
-                            setState(() {
-                              checkUse[2] = newValue;
-                            });
-                            Text('Remember me');
-                          }),
+                      InkWell(
+                        onTap: () {
+                          setState(() {
+                            checkUse[2] = !checkUse[2];
+                          });
+                        },
+                        child: Container(
+                          decoration: BoxDecoration(shape: BoxShape.circle, color: checkUse[2] ? Colors.blue : Color.fromRGBO(196, 196, 196, 1)),
+                          child: Padding(
+                            padding: const EdgeInsets.all(4.0),
+                            child: checkUse[2]
+                                ? Icon(
+                              Icons.check,
+                              size: 15.0,
+                              color: Colors.white,
+                            )
+                                : Icon(
+                              Icons.check_box_outline_blank,
+                              size: 15.0,
+                              color: Color.fromRGBO(196, 196, 196, 1),
+                            ),
+                          ),
+                        ),
+                      ),
+                      SizedBox(width:10,),
                       Text("Cigarette"),
                     ],
                   ),
+                  SizedBox(height:20,),
                   Row(
                     children: [
-                      Checkbox(value: checkUse[3],
-                          activeColor: Color.fromRGBO(75, 122, 252, 1),
-                          onChanged:(bool newValue){
-                            setState(() {
-                              checkUse[3] = newValue;
-                            });
-                            Text('Remember me');
-                          }),
+                      InkWell(
+                        onTap: () {
+                          setState(() {
+                            checkUse[3] = !checkUse[3];
+                          });
+                        },
+                        child: Container(
+                          decoration: BoxDecoration(shape: BoxShape.circle, color: checkUse[3] ? Colors.blue : Color.fromRGBO(196, 196, 196, 1)),
+                          child: Padding(
+                            padding: const EdgeInsets.all(4.0),
+                            child: checkUse[3]
+                                ? Icon(
+                              Icons.check,
+                              size: 15.0,
+                              color: Colors.white,
+                            )
+                                : Icon(
+                              Icons.check_box_outline_blank,
+                              size: 15.0,
+                              color: Color.fromRGBO(196, 196, 196, 1),
+                            ),
+                          ),
+                        ),
+                      ),
+                      SizedBox(width:10,),
                       Text("Gasoline"),
                     ],
                   ),
                 ],
               ),
-              SizedBox(width: 20,),
+              SizedBox(width: 40,),
               Column(
                 crossAxisAlignment: CrossAxisAlignment.start,
                 children: [
+                  SizedBox(height:20,),
                   Row(
                     children: [
-                      Checkbox(value: checkUse[4],
-                          activeColor: Color.fromRGBO(75, 122, 252, 1),
-                          onChanged:(bool newValue){
-                            setState(() {
-                              checkUse[4] = newValue;
-                            });
-                            Text('Remember me');
-                          }),
+                      InkWell(
+                        onTap: () {
+                          setState(() {
+                            checkUse[4] = !checkUse[4];
+                          });
+                        },
+                        child: Container(
+                          decoration: BoxDecoration(shape: BoxShape.circle, color: checkUse[4] ? Colors.blue : Color.fromRGBO(196, 196, 196, 1)),
+                          child: Padding(
+                            padding: const EdgeInsets.all(4.0),
+                            child: checkUse[4]
+                                ? Icon(
+                              Icons.check,
+                              size: 15.0,
+                              color: Colors.white,
+                            )
+                                : Icon(
+                              Icons.check_box_outline_blank,
+                              size: 15.0,
+                              color: Color.fromRGBO(196, 196, 196, 1),
+                            ),
+                          ),
+                        ),
+                      ),
+                      SizedBox(width:10,),
                       Text("Makeup"),
                     ],
                   ),
+                  SizedBox(height:20,),
                   Row(
                     children: [
-                      Checkbox(value: checkUse[5],
-                          activeColor: Color.fromRGBO(75, 122, 252, 1),
-                          onChanged:(bool newValue){
-                            setState(() {
-                              checkUse[5] = newValue;
-                            });
-                            Text('Remember me');
-                          }),
+                      InkWell(
+                        onTap: () {
+                          setState(() {
+                            checkUse[5] = !checkUse[5];
+                          });
+                        },
+                        child: Container(
+                          decoration: BoxDecoration(shape: BoxShape.circle, color: checkUse[5] ? Colors.blue : Color.fromRGBO(196, 196, 196, 1)),
+                          child: Padding(
+                            padding: const EdgeInsets.all(4.0),
+                            child: checkUse[5]
+                                ? Icon(
+                              Icons.check,
+                              size: 15.0,
+                              color: Colors.white,
+                            )
+                                : Icon(
+                              Icons.check_box_outline_blank,
+                              size: 15.0,
+                              color: Color.fromRGBO(196, 196, 196, 1),
+                            ),
+                          ),
+                        ),
+                      ),
+                      SizedBox(width:10,),
                       Text("Painting"),
                     ],
                   ),
+                  SizedBox(height:20,),
                   Row(
                     children: [
-                      Checkbox(value: checkUse[6],
-                          activeColor: Color.fromRGBO(75, 122, 252, 1),
-                          onChanged:(bool newValue){
-                            setState(() {
-                              checkUse[6] = newValue;
-                            });
-                            Text('Remember me');
-                          }),
+                      InkWell(
+                        onTap: () {
+                          setState(() {
+                            checkUse[6] = !checkUse[6];
+                          });
+                        },
+                        child: Container(
+                          decoration: BoxDecoration(shape: BoxShape.circle, color: checkUse[6] ? Colors.blue : Color.fromRGBO(196, 196, 196, 1)),
+                          child: Padding(
+                            padding: const EdgeInsets.all(4.0),
+                            child: checkUse[6]
+                                ? Icon(
+                              Icons.check,
+                              size: 15.0,
+                              color: Colors.white,
+                            )
+                                : Icon(
+                              Icons.check_box_outline_blank,
+                              size: 15.0,
+                              color: Color.fromRGBO(196, 196, 196, 1),
+                            ),
+                          ),
+                        ),
+                      ),
+                      SizedBox(width:10,),
                       Text("Moisturizing cream"),
                     ],
                   ),
+                  SizedBox(height:20,),
                   Row(
                     children: [
-                      Checkbox(value: checkUse[7],
-                          activeColor: Color.fromRGBO(75, 122, 252, 1),
-                          onChanged:(bool newValue){
-                            setState(() {
-                              checkUse[7] = newValue;
-                            });
-                            Text('Remember me');
-                          }),
+                      InkWell(
+                        onTap: () {
+                          setState(() {
+                            checkUse[7] = !checkUse[7];
+                          });
+                        },
+                        child: Container(
+                          decoration: BoxDecoration(shape: BoxShape.circle, color: checkUse[7] ? Colors.blue : Color.fromRGBO(196, 196, 196, 1)),
+                          child: Padding(
+                            padding: const EdgeInsets.all(4.0),
+                            child: checkUse[7]
+                                ? Icon(
+                              Icons.check,
+                              size: 15.0,
+                              color: Colors.white,
+                            )
+                                : Icon(
+                              Icons.check_box_outline_blank,
+                              size: 15.0,
+                              color: Color.fromRGBO(196, 196, 196, 1),
+                            ),
+                          ),
+                        ),
+                      ),
+                      SizedBox(width:10,),
                       Text("Other"),
                     ],
                   ),
@@ -314,6 +469,57 @@ class _SessionState extends State<Session> {
               )
             ],
           ),
+        ],
+      ),
+    );
+  }
+
+  Widget whatWeather(){
+    List<Widget> cardList = List<Widget>();
+    cardList.add(SizedBox(width: 32,));
+    print(checkWeather);
+    for(var i =0; i<weatherCard.length;i++){
+      cardList.add(Padding(
+        padding: EdgeInsets.fromLTRB(0,0,10,0),
+        child: MaterialButton(
+          onPressed: () {
+            setState(() {
+              checkWeather = i;
+              for(var j =0; j<weatherCard.length;j++){
+                if(j==checkWeather){
+                  weatherCard[j].changeColor(true);
+                }
+                else{
+                  weatherCard[j].changeColor(false);
+                }
+              }
+            });
+          },
+            padding: EdgeInsets.fromLTRB(0,0,0,0),
+            child: weatherCard[i].getWidget(context)
+        ),
+      ));
+    }
+    cardList.add(SizedBox(width: 32,));
+
+
+    return Container(
+      width: MediaQuery.of(context).size.width,
+      child: Column(
+        crossAxisAlignment: CrossAxisAlignment.start,
+        children: [
+          Padding(
+            padding: EdgeInsets.fromLTRB(32, 0, 0, 0),
+            child: Text("How was the weather ?",
+              style: TextStyle(color: Color.fromRGBO(82, 82, 82, 1), fontSize: 18),),
+          ),
+          Container(
+            height: 150,
+            child: ListView(
+                scrollDirection: Axis.horizontal,
+              children: cardList,
+            ),
+          )
         ],
       ),
     );
@@ -362,21 +568,30 @@ class _SessionState extends State<Session> {
         body: Stack(
           children: [
             SingleChildScrollView(
-              child: Padding(
-                padding: EdgeInsets.fromLTRB(32, 0, 32, 0),
-                child: Column(
-                  children: [
-                    SizedBox(height: 70,),
-                    whoSee(),
-                    SizedBox(height: 20,),
-                    whatSee(),
-                    SizedBox(height: 20,),
-                    whatUse(),
-                    SizedBox(height: 50,),
-                    stopSession(),
-                    SizedBox(height: 50,),
-                  ],
-                ),
+              child: Column(
+                children: [
+                  SizedBox(height: 80,),
+                  Padding(
+                    padding: EdgeInsets.fromLTRB(32, 0, 32, 0),
+                    child: whoSee(),
+                  ),
+                  SizedBox(height: 30,),
+                  whatSee(),
+                  SizedBox(height: 30,),
+                  Padding(
+                    padding: EdgeInsets.fromLTRB(32, 0, 32, 0),
+                    child: whatUse(),
+                  ),
+                  SizedBox(height: 30),
+                  whatWeather(),
+                  SizedBox(height: 50,),
+                  Padding(
+                    padding: EdgeInsets.fromLTRB(32, 0, 32, 0),
+                    child: stopSession(),
+                  ),
+
+                  SizedBox(height: 50,),
+                ],
               ),
             ),
             Navbar(),
