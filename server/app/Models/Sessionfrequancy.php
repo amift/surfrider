@@ -28,7 +28,7 @@ class Sessionfrequancy extends BaseModel
      */
     public function initialize()
     {
-        $this->setSchema("surfrider");
+
         $this->setSource("sessionfrequancy");
         $this->belongsTo('session_id', 'SurfRider\Models\Session', 'id', ['alias' => 'Session']);
         $this->belongsTo('frequency_id', 'SurfRider\Models\Frequency', 'id', ['alias' => 'Frequency']);

@@ -52,7 +52,7 @@ class Entity extends BaseModel
      */
     public function initialize()
     {
-        $this->setSchema("surfrider");
+
         $this->setSource("entity");
         $this->hasMany('id', 'SurfRider\Models\Frequency', 'boat_id', ['alias' => 'Frequency']);
         $this->hasMany('id', 'SurfRider\Models\Useditem', 'entity_id', ['alias' => 'Useditem']);

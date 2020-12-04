@@ -46,7 +46,7 @@ class Frequency extends BaseModel
      */
     public function initialize()
     {
-        $this->setSchema("surfrider");
+
         $this->setSource("frequency");
         $this->hasMany('id', 'SurfRider\Models\Sessionfrequancy', 'frequency_id', ['alias' => 'Sessionfrequancy']);
         $this->belongsTo('boat_id', 'SurfRider\Models\Entity', 'id', ['alias' => 'Entity']);

@@ -133,7 +133,6 @@ class User extends BaseModel
      */
     public function initialize()
     {
-        $this->setSchema("surfrider");
         $this->setSource("user");
         $this->hasMany('id', 'SurfRider\Models\Auth', 'user_id', ['alias' => 'Auth']);
         $this->hasMany('id', 'SurfRider\Models\Session', 'user_id', ['alias' => 'Session']);
@@ -167,7 +166,7 @@ class User extends BaseModel
      */
     public function beforeCreate(){
         parent::beforeCreate();
-        
+
         $this->password = $this->getDi()->get('security')->hash($this->password);
     }
 }

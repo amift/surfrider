@@ -40,7 +40,7 @@ class Useditem extends BaseModel
      */
     public function initialize()
     {
-        $this->setSchema("surfrider");
+
         $this->setSource("useditem");
         $this->hasMany('id', 'SurfRider\Models\Sessionuseditem', 'useditem_id', ['alias' => 'Sessionuseditem']);
         $this->belongsTo('entity_id', 'SurfRider\Models\Entity', 'id', ['alias' => 'Entity']);

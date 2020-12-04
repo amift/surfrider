@@ -64,7 +64,7 @@ class Session extends BaseModel
      */
     public function initialize()
     {
-        $this->setSchema("surfrider");
+
         $this->setSource("session");
         $this->hasMany('id', 'SurfRider\Models\Sessionfrequancy', 'session_id', ['alias' => 'Sessionfrequancy']);
         $this->hasMany('id', 'SurfRider\Models\Sessionuseditem', 'session_id', ['alias' => 'Sessionuseditem']);

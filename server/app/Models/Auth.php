@@ -40,7 +40,7 @@ class Auth extends BaseModel
      */
     public function initialize()
     {
-        $this->setSchema("surfrider");
+
         $this->setSource("auth");
         $this->belongsTo('user_id', 'SurfRider\Models\User', 'id', ['alias' => 'User']);
     }

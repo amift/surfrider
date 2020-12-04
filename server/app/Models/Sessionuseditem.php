@@ -28,7 +28,7 @@ class Sessionuseditem extends BaseModel
      */
     public function initialize()
     {
-        $this->setSchema("surfrider");
+
         $this->setSource("sessionuseditem");
         $this->belongsTo('session_id', 'SurfRider\Models\Session', 'id', ['alias' => 'Session']);
         $this->belongsTo('useditem_id', 'SurfRider\Models\Useditem', 'id', ['alias' => 'Useditem']);
