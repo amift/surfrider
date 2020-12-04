@@ -1,8 +1,10 @@
+import 'dart:convert';
+
 import 'package:flutter/material.dart';
+import 'package:http/http.dart' as http;
 import 'package:shared_preferences/shared_preferences.dart';
 
 import 'package:surfrider/pages/Home.dart';
-import 'package:surfrider/connexion/Login.dart';
 
 class Index extends StatefulWidget {
   @override
@@ -14,19 +16,10 @@ class _IndexState extends State<Index> {
   SharedPreferences sharedPreferences;
 
   @override
-  void initState(){
+  void initState() async{
     super.initState();
-    checkLoginStatus();
   }
-  
-  checkLoginStatus() async {
-    sharedPreferences = await SharedPreferences.getInstance();
-    if(sharedPreferences.getString("token")==null){
-      Navigator.of(context).pushAndRemoveUntil(MaterialPageRoute(builder: (BuildContext context) => Home()), (route) => false);
 
-    }
-  }
-  
   @override
   Widget build(BuildContext context) {
     return SafeArea(

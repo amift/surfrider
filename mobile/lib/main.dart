@@ -16,7 +16,7 @@ class HomeApp extends StatelessWidget {
   @override
   Widget build(BuildContext context) {
     return new MaterialApp(
-      title: 'SeaFood',
+      title: 'SurfRider',
       routes: router,
     );
   }

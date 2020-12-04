@@ -1,0 +1,35 @@
+:root{
+    --var-box-bg: #f3f6fb;
+    --var-box-raduis: 15px;
+
+    --var-logo-color: #112940;
+    --var-username-color: #172d41;
+
+    --var-notificatio-color: #ff5757;
+
+    --var-hover-color: #f3f6fb;
+    --var-mymessage-bg: #1a233b;
+    --var-mymessage-color: white;
+
+    --var-rcmessage-bg: white;
+    --var-rcmessage-color: #1a233b;
+    
+
+    --var-button-bg: #004dfc;
+    --var-button-color: white;
+
+    --var-button-file-color: #1a233b88;
+    --var-input-height: 50px;
+
+    --var-button-light-bg: #1F1F70;
+    --var-button-light-border: #27277a;
+
+    --var-button-light-bg-hover: #393994;
+    --var-button-light-border-hover: #1F1F70;
+
+    --var-button-dark-bg: #004dfcde;
+    --var-button-dark-border: #004dfcde;
+
+    --var-button-dark-bg-hover: #2d2d42;
+    --var-button-dark-border-hover: #4b4b70;
+}

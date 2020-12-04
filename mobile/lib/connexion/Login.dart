@@ -19,14 +19,16 @@ class _LoginState extends State<Login> {
     var map = Map<String, dynamic>();
     map['password'] = password;
     map['username'] = username;
-    var jsonData = null;
+
     SharedPreferences sharedPreferences = await SharedPreferences.getInstance();
+
     var response = await http.post(api.login, body:map);
-    jsonData = json.decode(response.body);
+    var jsonData = json.decode(response.body);
+
     if(jsonData['status'] == "ok"){
       setState(() {
         sharedPreferences.setString("token", jsonData['token']);
-        Navigator.of(context).pushAndRemoveUntil(MaterialPageRoute(builder: (BuildContext context) => Home()), (route) => false);
+        Navigator.of(context).pushAndRemoveUntil(MaterialPageRoute(builder: (BuildContext context) => new Home()), (route) => false);
       });
     }
     else{

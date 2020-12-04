@@ -1,0 +1,73 @@
+{
+  "sessions": [
+    {
+      "id": "77b75449-b274-451f-bcaa-734042cf7c49",
+      "token": "8eaf8703-f5a3-4e2b-9a2a-82e59d7e7157",
+      "user": null,
+      "userid": "bd93df44-2edb-4f12-afca-5937cb6c74b9",
+      "created_at": 1606960026623,
+      "expired_at": 1606961322623
+    },
+    {
+      "id": "373e7f67-fa2e-4337-bf83-05fbd00b8ded",
+      "token": "f1df4223-2c7c-4455-95ec-21e1b56b77d1",
+      "user": null,
+      "userid": "556b5940-d375-4e6b-bc31-31b9e2d24420",
+      "created_at": 1607004189708,
+      "expired_at": 1607005485708
+    },
+    {
+      "id": "51ac1eb0-6c11-4ffb-9431-04408640367e",
+      "token": "8fd47c37-ebec-4a31-acfe-2dbae96122a8",
+      "user": null,
+      "userid": "d79dc0f8-0037-4da3-83a2-c31d74947bb2",
+      "created_at": 1607004155788,
+      "expired_at": 1607005451788
+    }
+  ],
+  "users": [
+    {
+      "id": "bd93df44-2edb-4f12-afca-5937cb6c74b9",
+      "username": "test",
+      "avatar": "https://soulprism.in/img/female.png",
+      "password": "$2b$10$uJ9JmB1hz97wKq5tZ3CenefoL9.a.JolB1rsyxgg5zkJvwPWpfjQm",
+      "created_at": 1606945736531,
+      "updated_at": 1606945736531
+    },
+    {
+      "id": "fd36c6cd-2b8d-478d-9c00-686566d00451",
+      "username": "user1",
+      "avatar": "https://img.icons8.com/bubbles/2x/user-male.png",
+      "password": "$2b$10$n5XLjMCJPoq.UmL0NX7tgexq8GjHvfWHD.cUGJwEkPSTkMaJ0z4xC",
+      "created_at": 1606948801718,
+      "updated_at": 1606948801718
+    },
+    {
+      "id": "556b5940-d375-4e6b-bc31-31b9e2d24420",
+      "username": "user2",
+      "password": "$2b$10$/J5CAVt2cj4x9T7hJYRRru52.TY7Xro5s8AX/rgGHmXBVBgfOubPS",
+      "created_at": 1606948928255,
+      "avatar": "https://s3-ap-northeast-1.amazonaws.com/peatix-files/user/5562732/240administrator-male.png",
+      "updated_at": 1606948928255
+    },
+    {
+      "id": "a43c8d22-a786-48ef-aeef-6b81088d9608",
+      "username": "testx",
+      "password": "$2b$10$iLdPYB9VBpWg9FXSK6n40O1MVP9bBOW/tZRdxxntEQSEVKgPdGB2O",
+      "created_at": 1606955472754,
+      "avatar": "assets/media/avatar.jpg",
+      "updated_at": 1606955472754
+    },
+    {
+      "id": "d79dc0f8-0037-4da3-83a2-c31d74947bb2",
+      "username": "yassin",
+      "avatar": null,
+      "about": null,
+      "password": "$2b$10$ghJ0e3IXbiF035bSXAF1MOCfRCnKq5kjdtvoSP7LM6DbncFHEfBo.",
+      "created_at": 1607004155601,
+      "updated_at": 1607004155601
+    }
+  ],
+  "messsages": {},
+  "contacts": []
+}
